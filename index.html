@@ -45,10 +45,47 @@
       }
     })();
   </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="is-loading">
+  <div id="intro-sequence" class="intro-overlay">
+    <div class="intro-content">
+      <div class="intro-letter-wrapper">
+        <span class="intro-context"></span>
+        <span class="intro-char"></span>
+      </div>
+    </div>
+  </div>
+
+  <div id="contact-modal" class="modal-overlay">
+    <div class="modal-content">
+      <button class="modal-close" aria-label="Close modal">&times;</button>
+      <div class="modal-header">
+        <h2>Start Your Project</h2>
+        <p>Tell me about your vision and let's build something premium.</p>
+      </div>
+      <form class="modal-form" id="async-contact-form">
+        <div class="field-group">
+          <label for="modal-name">Full Name</label>
+          <input type="text" id="modal-name" name="name" placeholder="Gaurav Kumar" required>
+        </div>
+        <div class="field-group">
+          <label for="modal-phone">Phone Number</label>
+          <input type="tel" id="modal-phone" name="phone" value="+91" placeholder="+91 00000 00000" required>
+        </div>
+        <div class="field-group">
+          <label for="modal-message">Your Message</label>
+          <textarea id="modal-message" name="message" rows="4" placeholder="Describe your project..." required></textarea>
+        </div>
+        <button type="submit" class="button button-primary">Send Request &rarr;</button>
+      </form>
+    </div>
+  </div>
+
   <a class="skip-link" href="#main-content">Skip to content</a>
 
   <div class="page-loader" aria-hidden="true">
@@ -87,6 +124,20 @@
     <section class="hero section" id="top">
       <div class="hero-copy">
         <p class="eyebrow reveal">Freelance Video Editor + After Effects Motion Designer</p>
+        <div class="hero-center-visual">
+          <div id="hero-canvas" class="hero-canvas-container"></div>
+          <div class="progress-ring-container">
+            <svg class="progress-ring" width="240" height="240">
+              <circle class="progress-ring__circle-bg" stroke="rgba(255,255,255,0.1)" stroke-width="2" fill="transparent" r="110" cx="120" cy="120"/>
+              <circle class="progress-ring__circle" stroke="white" stroke-width="2" fill="transparent" r="110" cx="120" cy="120"/>
+            </svg>
+            <div class="progress-text">
+              <span class="progress-number">0%</span>
+              <span class="progress-subtext">Reducing friction in motion delivery</span>
+            </div>
+          </div>
+        </div>
+
         <h1 class="reveal">
           High-retention edits
           <span>that make brands feel expensive</span>
@@ -475,6 +526,7 @@
       target="_blank" rel="noreferrer">Email</a>
   </div>
 
+  <script src="hero3d.js" defer></script>
   <script src="code.js" defer></script>
 </body>
 

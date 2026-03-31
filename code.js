@@ -12,6 +12,10 @@ const themeToggleButtons = document.querySelectorAll("[data-theme-toggle]");
 const themeColorMeta = document.querySelector('meta[name="theme-color"]');
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const prefersHoverInput = window.matchMedia("(hover: hover) and (pointer: fine)");
+const introOverlay = document.getElementById("intro-sequence");
+const contactModal = document.getElementById("contact-modal");
+const startProjectButtons = document.querySelectorAll('a[href="./contact.html"], .header-cta');
+const modalClose = document.querySelector(".modal-close");
 const themeStorageKey = "xaurav-theme";
 const themeColors = {
   dark: "#07111f",
@@ -68,15 +72,109 @@ themeToggleButtons.forEach((button) => {
   });
 });
 
-const markPageReady = () => {
-  body.classList.remove("is-loading");
-  body.classList.add("is-ready");
+const runIntroSequence = () => {
+  console.log("Attempting to run intro sequence...");
+  if (isReducedMotion() || !introOverlay || !window.gsap) {
+    console.log("Intro skipped: reduced motion or missing elements/GSAP");
+    if (introOverlay) introOverlay.style.display = "none";
+    body.classList.remove("is-loading");
+    body.classList.add("is-ready");
+    return;
+  }
 
+  const gsap = window.gsap;
+  const charEl = introOverlay.querySelector(".intro-char");
+  const contextEl = introOverlay.querySelector(".intro-context");
+  
+  const introData = [
+    { char: "X", context: "XAURAV" },
+    { char: "M", context: "MOTIONS" },
+    { char: "E", context: "EDITS" },
+    { char: "P", context: "PREMIUM" }
+  ];
+
+  console.log("Starting GSAP intro timeline...");
+  const tl = gsap.timeline({
+    onComplete: () => {
+      console.log("Intro timeline complete. Revealing main page...");
+      gsap.to(introOverlay, {
+        opacity: 0,
+        duration: 0.8,
+        ease: "power2.inOut",
+        onComplete: () => {
+          introOverlay.style.display = "none";
+          body.classList.remove("is-loading");
+          body.classList.add("is-ready");
+          animateProgressRing();
+        }
+      });
+    }
+  });
+
+  introData.forEach((data, i) => {
+    tl.to(contextEl, {
+      opacity: 0,
+      y: -10,
+      duration: 0.2
+    }, i === 0 ? 0.3 : ">")
+    .set(contextEl, { textContent: data.context, y: 10 })
+    .to(contextEl, { opacity: 1, y: 0, duration: 0.4, ease: "back.out(1.7)" })
+    
+    .to(charEl, {
+      opacity: 0,
+      scale: 0.8,
+      duration: 0.2
+    }, "<")
+    .set(charEl, { textContent: data.char, scale: 1.2 })
+    .to(charEl, { opacity: 1, scale: 1, duration: 0.6, ease: "expo.out" })
+    
+    .to([charEl, contextEl], {
+      opacity: 0,
+      duration: 0.3,
+      delay: 0.5
+    });
+  });
+};
+
+const animateProgressRing = () => {
+  const circle = document.querySelector(".progress-ring__circle");
+  const numberEl = document.querySelector(".progress-number");
+  if (!circle || !numberEl) return;
+
+  const radius = circle.r.baseVal.value;
+  const circumference = radius * 2 * Math.PI;
+  circle.style.strokeDasharray = `${circumference} ${circumference}`;
+  circle.style.strokeDashoffset = circumference;
+
+  const targetPercent = 85;
+  const duration = 2.5;
+
+  gsap.to(circle, {
+    strokeDashoffset: circumference - (targetPercent / 100) * circumference,
+    duration: duration,
+    ease: "power2.inOut"
+  });
+
+  const countObj = { value: 0 };
+  gsap.to(countObj, {
+    value: targetPercent,
+    duration: duration,
+    ease: "power2.inOut",
+    onUpdate: () => {
+      numberEl.textContent = Math.floor(countObj.value) + "%";
+    }
+  });
+};
+
+const markPageReady = () => {
   if (pageLoader) {
     pageLoader.classList.add("is-hidden");
     window.setTimeout(() => {
       pageLoader.remove();
+      runIntroSequence();
     }, 520);
+  } else {
+    runIntroSequence();
   }
 };
 
@@ -563,6 +661,60 @@ projectVideos.forEach((video) => {
     event.preventDefault();
   });
 });
+
+/* ── Contact Modal Logic ── */
+if (contactModal) {
+  const openModal = (e) => {
+    e.preventDefault();
+    contactModal.classList.add("is-active");
+    body.classList.add("modal-open");
+  };
+
+  const closeModal = () => {
+    contactModal.classList.remove("is-active");
+    body.classList.remove("modal-open");
+  };
+
+  startProjectButtons.forEach(btn => btn.addEventListener("click", openModal));
+  if (modalClose) modalClose.addEventListener("click", closeModal);
+
+  contactModal.addEventListener("click", (e) => {
+    if (e.target === contactModal) closeModal();
+  });
+
+  // Handle escape key
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && contactModal.classList.contains("is-active")) {
+      closeModal();
+    }
+  });
+
+  const modalForm = document.getElementById("async-contact-form");
+  if (modalForm) {
+    modalForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      // Visual feedback for submission
+      const submitBtn = modalForm.querySelector('button[type="submit"]');
+      const originalText = submitBtn.textContent;
+      submitBtn.textContent = "Sending...";
+      submitBtn.disabled = true;
+
+      setTimeout(() => {
+        // Mock success
+        submitBtn.textContent = "Request Sent!";
+        setTimeout(() => {
+          closeModal();
+          // Reset form after closing
+          setTimeout(() => {
+            modalForm.reset();
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+          }, 600);
+        }, 1500);
+      }, 2000);
+    });
+  }
+}
 
 if (mobileCta && contactSection && "IntersectionObserver" in window) {
   const ctaObserver = new IntersectionObserver(
