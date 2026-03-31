@@ -2637,7 +2637,7 @@ body.is-ready .progress-ring-container {
   .header-actions {
     position: absolute !important;
     bottom: -1rem;
-    right: 1.5rem;
+    left: 1.5rem;
     width: auto;
     z-index: 100;
   }
@@ -2848,7 +2848,8 @@ body.is-ready .progress-ring-container {
 
   .header-actions {
     bottom: -0.875rem !important;
-    right: 1rem !important;
+    left: 1rem !important;
+    right: auto !important;
   }
 
   .site-nav {
