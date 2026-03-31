@@ -469,6 +469,12 @@ if ("IntersectionObserver" in window) {
 previewStates.forEach((state) => {
   state.video.pause();
   state.video.muted = true;
+  if (!hoverPreviewEnabled()) {
+    state.video.loop = false;
+    state.video.addEventListener('ended', () => {
+      stopPreview(state);
+    });
+  }
   updateAudioButton(state);
 
   state.card.addEventListener("mouseenter", () => {
