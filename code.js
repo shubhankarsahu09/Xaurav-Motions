@@ -445,7 +445,7 @@ if ("IntersectionObserver" in window) {
     (entries) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) {
-          const state = previewMap.get(entry.target);
+          const state = previewMap.get(entry.target.closest('.project-card'));
           if (state && state.card.classList.contains("is-playing")) {
             stopPreview(state);
           }
@@ -460,7 +460,7 @@ if ("IntersectionObserver" in window) {
 
   previewStates.forEach((state) => {
     previewObserver.observe(state.card);
-    playbackObserver.observe(state.card);
+    playbackObserver.observe(state.video);
   });
 } else {
   previewStates.forEach((state) => primePreview(state));
