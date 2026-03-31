@@ -813,21 +813,3 @@ if (heroMetrics && "IntersectionObserver" in window) {
 
   counterObserver.observe(heroMetrics);
 }
-
-/* ── Interactive Dotted Background Logic ── */
-const dotsBg = document.getElementById("interactive-dots-bg");
-if (dotsBg && prefersHoverInput.matches && typeof gsap !== 'undefined') {
-  // Use GSAP quickTo for highly performant mouse tracking
-  const moveX = gsap.quickTo(dotsBg, "x", { duration: 0.6, ease: "power3" });
-  const moveY = gsap.quickTo(dotsBg, "y", { duration: 0.6, ease: "power3" });
-
-  window.addEventListener("mousemove", (e) => {
-    // Calculate distance from center of screen (-1 to 1)
-    const xDist = (e.clientX / window.innerWidth) * 2 - 1;
-    const yDist = (e.clientY / window.innerHeight) * 2 - 1;
-    
-    // Move the background slightly in the opposite direction for parallax
-    moveX(xDist * -40); // 40px max shift
-    moveY(yDist * -40);
-  });
-}
