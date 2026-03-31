@@ -83,6 +83,21 @@ body::after {
   background: radial-gradient(circle at center, transparent 45%, rgba(2, 6, 15, 0.65) 100%);
 }
 
+#interactive-dots-bg {
+  position: fixed;
+  inset: -20vw -20vh;
+  z-index: -3; /* Sit behind the body masks and 3D canvas */
+  pointer-events: none;
+  background-image: radial-gradient(circle, var(--dot-color, rgba(255, 255, 255, 0.06)) 1.5px, transparent 1.5px);
+  background-size: 28px 28px;
+  background-position: center;
+  will-change: transform;
+}
+
+html[data-theme="light"] #interactive-dots-bg {
+  --dot-color: rgba(6, 14, 28, 0.08);
+}
+
 body.is-loading .site-header,
 body.is-loading main,
 body.is-loading .site-footer,
