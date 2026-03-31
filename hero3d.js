@@ -222,8 +222,16 @@
   /* ── Theme Observer (Eliminates DOM reads in Animation Loop) ── */
   const updateParticlesTheme = () => {
     const currentTheme = document.documentElement.dataset.theme;
-    particlesMat.opacity = currentTheme === "light" ? 0.12 : 0.25;
-    particlesMat.color.set(currentTheme === "light" ? 0x2563eb : 0xffffff);
+    const isLight = currentTheme === "light";
+    
+    // Particles: Increase opacity and vibrancy for light mode
+    particlesMat.opacity = isLight ? 0.42 : 0.25;
+    particlesMat.color.set(isLight ? 0x0ea5e9 : 0xffffff);
+    
+    // Lighting: Boost intensity in light mode to keep shapes 'crisp'
+    ambientLight.intensity = isLight ? 0.8 : 0.4;
+    dirLight1.intensity = isLight ? 2.2 : 1.8;
+    renderer.toneMappingExposure = isLight ? 1.0 : 1.2;
   };
   
   // Set initial theme
