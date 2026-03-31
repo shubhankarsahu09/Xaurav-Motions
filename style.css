@@ -2702,26 +2702,64 @@ body.is-ready .progress-ring-container {
   }
 
   .hero-stage {
-    min-height: 32.5rem;
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1rem 0 2rem;
+  }
+
+  .floating-card {
+    position: relative;
+    width: 100% !important;
+    inset: auto !important;
+    transform: none !important;
+    animation: none !important;
+  }
+
+  .card-main {
+    min-height: 28rem;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
   }
 
   .play-ring {
-    width: 9.5rem;
-    height: 12.125rem;
+    top: 40%;
+    transform: translate(-50%, -40%);
+    width: 11rem;
+    height: 14.5rem;
+  }
+
+  .timeline {
+    position: relative;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    margin-top: auto;
+    gap: 0.5rem;
+  }
+
+  .timeline-card {
+    padding: 0.625rem 0.875rem;
+    border-radius: 1rem;
+  }
+
+  .timeline-copy {
+    margin-bottom: 0.25rem;
+  }
+
+  .timeline-copy small {
+    font-size: 0.7rem;
+  }
+
+  .timeline-copy strong {
+    font-size: 0.9rem;
   }
 
   .card-side,
   .card-stat {
-    width: 9.375rem;
-    padding: 0.875rem;
-  }
-
-  .card-side {
-    top: 1.125rem;
-  }
-
-  .card-stat {
-    bottom: 1.125rem;
+    padding: 1.25rem;
   }
 
   .button,
