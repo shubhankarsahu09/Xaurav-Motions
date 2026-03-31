@@ -581,11 +581,34 @@ html[data-theme="light"] .theme-toggle-icon-moon {
 }
 
 .hero {
+  position: relative;
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
   gap: 3.375rem;
   align-items: center;
   min-height: calc(100vh - 9.375rem);
+}
+
+#hero-3d {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.6;
+  mask-image: radial-gradient(ellipse 80% 70% at 60% 45%, black 30%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 60% 45%, black 30%, transparent 70%);
+}
+
+#hero-3d canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+.hero-copy,
+.hero-stage {
+  position: relative;
+  z-index: 1;
 }
 
 .hero-copy {
