@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Start Your Project | Xaurav Motions</title>
+  <meta
+    name="description"
+    content="Start your next video editing or motion design project with Gaurav. Fill out the brief and get a response within 24 hours."
+  >
+  <meta name="theme-color" content="#ffffff">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=Manrope:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+  <script>
+    (() => {
+      try {
+        const savedTheme = localStorage.getItem("xaurav-theme");
+        if (savedTheme === "light" || savedTheme === "dark") {
+          document.documentElement.dataset.theme = savedTheme;
+        } else {
+          document.documentElement.dataset.theme = "light";
+        }
+      } catch (error) {
+        document.documentElement.dataset.theme = "light";
+      }
+    })();
+  </script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="feedback-page">
+  <div class="noise"></div>
+  <div class="orb orb-one"></div>
+  <div class="orb orb-two"></div>
+
+  <header class="site-header">
+    <a class="brand" href="./index.html">Xaurav <span>Motions</span></a>
+    <nav class="site-nav">
+      <a href="./index.html#work">Work</a>
+      <a href="./index.html#services">Services</a>
+      <a href="./index.html#contact">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <button
+        class="theme-toggle"
+        type="button"
+        data-theme-toggle
+        aria-pressed="false"
+        aria-label="Switch to light theme"
+        title="Switch theme"
+      >
+        <span class="theme-toggle-icon theme-toggle-icon-sun" aria-hidden="true">&#9728;</span>
+        <span class="theme-toggle-track" aria-hidden="true">
+          <span class="theme-toggle-thumb"></span>
+        </span>
+        <span class="theme-toggle-icon theme-toggle-icon-moon" aria-hidden="true">&#9790;</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="feedback-shell section">
+      <div class="feedback-layout">
+        <aside class="feedback-card feedback-overview reveal" data-tilt>
+          <p class="eyebrow">Start Your Project</p>
+          <h1>Let's build something premium together.</h1>
+          <p class="feedback-copy">
+            Tell me about your project, timeline, and goals. I'll get back to you within 24 hours
+            with a clear plan, honest pricing, and a structured workflow.
+          </p>
+
+          <div class="feedback-stats">
+            <div class="feedback-stat">
+              <strong>24H</strong>
+              <span>Response Time</span>
+            </div>
+            <div class="feedback-stat">
+              <strong>120+</strong>
+              <span>Projects Delivered</span>
+            </div>
+          </div>
+
+          <div class="feedback-highlights">
+            <span>Video Editing</span>
+            <span>Motion Design</span>
+            <span>Launch Films</span>
+            <span>Social Content</span>
+          </div>
+
+        </aside>
+
+        <section class="feedback-card feedback-form-card reveal">
+          <p class="eyebrow">Project Brief</p>
+          <h2>Tell me about your project</h2>
+          <form class="feedback-form" data-contact-form>
+            <div class="feedback-grid">
+              <label class="field-group">
+                <span>Your Name</span>
+                <input type="text" name="name" placeholder="Enter your name" required>
+              </label>
+              <label class="field-group">
+                <span>Email Address</span>
+                <input type="email" name="email" placeholder="name@example.com" required>
+              </label>
+            </div>
+
+            <label class="field-group">
+              <span>Brand / Company Name</span>
+              <input type="text" name="brand" placeholder="Your brand or company name">
+            </label>
+
+            <fieldset class="field-set">
+              <legend>Project Type</legend>
+              <div class="check-grid">
+                <label class="check-pill">
+                  <input type="checkbox" name="project_type" value="Video Editing">
+                  <span>Video Editing</span>
+                </label>
+                <label class="check-pill">
+                  <input type="checkbox" name="project_type" value="Motion Design">
+                  <span>Motion Design</span>
+                </label>
+                <label class="check-pill">
+                  <input type="checkbox" name="project_type" value="Launch Film">
+                  <span>Launch Film</span>
+                </label>
+                <label class="check-pill">
+                  <input type="checkbox" name="project_type" value="Social Content">
+                  <span>Social Content</span>
+                </label>
+                <label class="check-pill">
+                  <input type="checkbox" name="project_type" value="Brand Promo">
+                  <span>Brand Promo</span>
+                </label>
+                <label class="check-pill">
+                  <input type="checkbox" name="project_type" value="YouTube Content">
+                  <span>YouTube Content</span>
+                </label>
+              </div>
+            </fieldset>
+
+            <fieldset class="field-set">
+              <legend>Budget Range</legend>
+              <div class="rating-grid">
+                <input type="radio" name="budget" id="budget-1" value="Under ₹5K" required>
+                <label class="rating-pill" for="budget-1">Under ₹5K</label>
+                <input type="radio" name="budget" id="budget-2" value="₹5K–₹15K">
+                <label class="rating-pill" for="budget-2">₹5K–₹15K</label>
+                <input type="radio" name="budget" id="budget-3" value="₹15K–₹30K">
+                <label class="rating-pill" for="budget-3">₹15K–₹30K</label>
+                <input type="radio" name="budget" id="budget-4" value="₹30K+">
+                <label class="rating-pill" for="budget-4">₹30K+</label>
+                <input type="radio" name="budget" id="budget-5" value="Let's discuss">
+                <label class="rating-pill" for="budget-5">Let's discuss</label>
+              </div>
+            </fieldset>
+
+            <label class="field-group">
+              <span>Project Details</span>
+              <textarea
+                name="message"
+                rows="6"
+                placeholder="Describe your project, goals, timeline, and any references or inspiration you have in mind."
+                required
+              ></textarea>
+            </label>
+
+            <div class="feedback-actions">
+              <button class="button button-primary" type="submit">Send Project Brief</button>
+              <a class="button button-secondary" href="./index.html">Back To Portfolio</a>
+            </div>
+
+            <p class="form-note">Your brief will be sent directly to Gaurav. Expect a response within 24 hours.</p>
+            <p class="form-status" data-contact-status aria-live="polite"></p>
+          </form>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <script src="code.js"></script>
+  <script src="contact.js"></script>
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Xaurav Motions Feedback</title>
+  <meta
+    name="description"
+    content="Share feedback about Gaurav's video editing and motion design work."
+  >
+  <meta name="theme-color" content="#ffffff">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=Manrope:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+  <script>
+    (() => {
+      try {
+        const savedTheme = localStorage.getItem("xaurav-theme");
+        if (savedTheme === "light" || savedTheme === "dark") {
+          document.documentElement.dataset.theme = savedTheme;
+        } else {
+          // Default to light theme for new visitors
+          document.documentElement.dataset.theme = "light";
+        }
+      } catch (error) {
+        // Fallback to light theme if localStorage fails
+        document.documentElement.dataset.theme = "light";
+      }
+    })();
+  </script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="feedback-page">
+  <div class="noise"></div>
+  <div class="orb orb-one"></div>
+  <div class="orb orb-two"></div>
+
+  <header class="site-header">
+    <a class="brand" href="./index.html">Xaurav <span>Motions</span></a>
+    <nav class="site-nav">
+      <a href="./index.html#work">Work</a>
+      <a href="./index.html#services">Services</a>
+      <a href="./index.html#contact">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <button
+        class="theme-toggle"
+        type="button"
+        data-theme-toggle
+        aria-pressed="false"
+        aria-label="Switch to light theme"
+        title="Switch theme"
+      >
+        <span class="theme-toggle-icon theme-toggle-icon-sun" aria-hidden="true">&#9728;</span>
+        <span class="theme-toggle-track" aria-hidden="true">
+          <span class="theme-toggle-thumb"></span>
+        </span>
+        <span class="theme-toggle-icon theme-toggle-icon-moon" aria-hidden="true">&#9790;</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="feedback-shell section">
+      <div class="feedback-layout">
+        <aside class="feedback-card feedback-overview reveal" data-tilt>
+          <p class="eyebrow">Client Feedback</p>
+          <h1>Tell us how the edit felt, performed, and delivered.</h1>
+          <p class="feedback-copy">
+            Share your review of the editor's work, motion quality, pacing, and overall delivery.
+            Your feedback will be sent directly to Gaurav via email.
+          </p>
+
+          <div class="feedback-stats">
+            <div class="feedback-stat">
+              <strong>120+</strong>
+              <span>Featured Projects</span>
+            </div>
+            <div class="feedback-stat">
+              <strong>AE</strong>
+              <span>Motion Design Focus</span>
+            </div>
+          </div>
+
+          <div class="feedback-highlights">
+            <span>Editing Rhythm</span>
+            <span>Motion Graphics</span>
+            <span>Visual Polish</span>
+            <span>Client Experience</span>
+          </div>
+
+        </aside>
+
+        <section class="feedback-card feedback-form-card reveal">
+          <p class="eyebrow">Feedback Form</p>
+          <h2>Submit your review</h2>
+          <form class="feedback-form" data-feedback-form>
+            <div class="feedback-grid">
+              <label class="field-group">
+                <span>Your Name</span>
+                <input type="text" name="name" placeholder="Enter your name" required>
+              </label>
+              <label class="field-group">
+                <span>Email Address</span>
+                <input type="email" name="email" placeholder="name@example.com" required>
+              </label>
+            </div>
+
+            <fieldset class="field-set">
+              <legend>Overall Rating</legend>
+              <div class="rating-grid">
+                <input type="radio" name="rating" id="rating-1" value="1" required>
+                <label class="rating-pill" for="rating-1">1</label>
+                <input type="radio" name="rating" id="rating-2" value="2">
+                <label class="rating-pill" for="rating-2">2</label>
+                <input type="radio" name="rating" id="rating-3" value="3">
+                <label class="rating-pill" for="rating-3">3</label>
+                <input type="radio" name="rating" id="rating-4" value="4">
+                <label class="rating-pill" for="rating-4">4</label>
+                <input type="radio" name="rating" id="rating-5" value="5">
+                <label class="rating-pill" for="rating-5">5</label>
+              </div>
+            </fieldset>
+
+            <fieldset class="field-set">
+              <legend>What stood out most?</legend>
+              <div class="check-grid">
+                <label class="check-pill">
+                  <input type="checkbox" name="highlight" value="Editing rhythm">
+                  <span>Editing rhythm</span>
+                </label>
+                <label class="check-pill">
+                  <input type="checkbox" name="highlight" value="Motion design">
+                  <span>Motion design</span>
+                </label>
+                <label class="check-pill">
+                  <input type="checkbox" name="highlight" value="Visual polish">
+                  <span>Visual polish</span>
+                </label>
+                <label class="check-pill">
+                  <input type="checkbox" name="highlight" value="Communication">
+                  <span>Communication</span>
+                </label>
+                <label class="check-pill">
+                  <input type="checkbox" name="highlight" value="Delivery speed">
+                  <span>Delivery speed</span>
+                </label>
+              </div>
+            </fieldset>
+
+            <label class="field-group">
+              <span>Your Feedback</span>
+              <textarea
+                name="message"
+                rows="6"
+                placeholder="Share what worked well, what could improve, and how the edit felt overall."
+                required
+              ></textarea>
+            </label>
+
+            <label class="consent-row">
+              <input type="checkbox" name="testimonial">
+              <span>You can feature this feedback as a testimonial.</span>
+            </label>
+
+            <div class="feedback-actions">
+              <button class="button button-primary" type="submit">Send Feedback</button>
+              <a class="button button-secondary" href="./index.html">Back To Portfolio</a>
+            </div>
+
+            <p class="form-note">Submitting sends your feedback directly to Gaurav via email.</p>
+            <p class="form-status" data-feedback-status aria-live="polite"></p>
+          </form>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <script src="code.js"></script>
+  <script src="feedback.js"></script>
+</body>
+</html>
