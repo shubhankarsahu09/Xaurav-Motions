@@ -664,8 +664,10 @@ projectVideos.forEach((video) => {
 
 /* ── Contact Modal Logic ── */
 if (contactModal) {
+  console.log("Contact modal found in DOM, initializing listeners...");
   const openModal = (e) => {
     e.preventDefault();
+    console.log("Opening contact modal...");
     contactModal.classList.add("is-active");
     body.classList.add("modal-open");
   };
