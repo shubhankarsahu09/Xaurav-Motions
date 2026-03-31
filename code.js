@@ -14,7 +14,7 @@ const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)
 const prefersHoverInput = window.matchMedia("(hover: hover) and (pointer: fine)");
 const introOverlay = document.getElementById("intro-sequence");
 const contactModal = document.getElementById("contact-modal");
-const startProjectButtons = document.querySelectorAll('a[href="./contact.html"], .header-cta');
+const startProjectButtons = document.querySelectorAll('[data-modal-trigger]');
 const modalClose = document.querySelector(".modal-close");
 const themeStorageKey = "xaurav-theme";
 const themeColors = {
