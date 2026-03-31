@@ -2725,8 +2725,8 @@ body.is-ready .progress-ring-container {
   }
 
   .play-ring {
-    top: 25%;
-    transform: translate(-50%, -25%);
+    top: 31%;
+    transform: translate(-50%, -31%);
     width: 11rem;
     height: 14.5rem;
   }
