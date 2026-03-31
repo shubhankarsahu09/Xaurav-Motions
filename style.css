@@ -2616,18 +2616,18 @@ body.is-ready .progress-ring-container {
   .site-header {
     position: relative !important;
     width: calc(100% - 1.25rem);
-    padding: 1rem 1rem 2.25rem !important;
+    padding: 1.125rem 1rem !important;
     border-radius: 1.75rem;
-    display: flex !important;
-    justify-content: flex-start !important;
-    align-items: center !important;
-    min-height: 5.5rem !important;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    justify-items: center !important;
+    min-height: auto !important;
   }
 
   .brand {
-    justify-self: start !important;
-    margin-left: 0.75rem !important;
-    transform: translateY(-0.25rem) !important;
+    justify-self: center !important;
+    margin-left: 0 !important;
+    transform: none !important;
   }
 
   .site-nav {
@@ -2639,16 +2639,17 @@ body.is-ready .progress-ring-container {
 
   .header-actions {
     position: absolute !important;
-    bottom: 0.6rem !important;
+    bottom: -1.75rem !important;
     right: 1.25rem !important;
     left: auto !important;
     width: auto;
     z-index: 100 !important;
   }
-
+  
   .theme-toggle {
     margin: 0 !important;
-    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.2), var(--shadow) !important;
+    background: var(--panel-strong) !important;
+    box-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.3), var(--shadow) !important;
   }
 
   .theme-toggle {
