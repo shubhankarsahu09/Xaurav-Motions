@@ -7,8 +7,8 @@
   const scene = new THREE.Scene();
 
   /* ── Renderer ── */
-  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: "high-performance" });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
   renderer.setSize(container.clientWidth, container.clientHeight);
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.2;
@@ -60,7 +60,7 @@
   pmremGenerator.dispose();
 
   /* ── Center Object: Glass Abstract Shape ── */
-  const centerGeo = new THREE.TorusKnotGeometry(1.2, 0.45, 128, 32, 2, 3);
+  const centerGeo = new THREE.TorusKnotGeometry(1.2, 0.45, 64, 16, 2, 3);
   const centerMat = new THREE.MeshPhysicalMaterial({
     color: 0xffffff,
     transmission: 1.0,
@@ -139,7 +139,7 @@
   });
 
   /* ── Interactive Particle Grid (Background Dots) ── */
-  const particleCount = 1800; // Large but efficient grid
+  const particleCount = 1000; // Efficient grid count
   const particlesGeo = new THREE.BufferGeometry();
   const positions = new Float32Array(particleCount * 3);
   const spread = 25; // How far the dots spread
@@ -182,11 +182,6 @@
     particleSystem.position.y = mouse.y * 0.35;
     particleSystem.rotation.y = mouse.x * 0.05;
 
-    // Adjust particle opacity based on theme
-    const currentTheme = document.documentElement.dataset.theme;
-    particlesMat.opacity = currentTheme === "light" ? 0.12 : 0.25;
-    particlesMat.color.set(currentTheme === "light" ? 0x2563eb : 0xffffff);
-
     // Center: slow rotation + gentle float
     centerObj.rotation.y = elapsed * 0.15;
     centerObj.rotation.x = elapsed * 0.08;
@@ -224,8 +219,29 @@
 
   window.addEventListener("resize", onResize, { passive: true });
 
+  /* ── Theme Observer (Eliminates DOM reads in Animation Loop) ── */
+  const updateParticlesTheme = () => {
+    const currentTheme = document.documentElement.dataset.theme;
+    particlesMat.opacity = currentTheme === "light" ? 0.12 : 0.25;
+    particlesMat.color.set(currentTheme === "light" ? 0x2563eb : 0xffffff);
+  };
+  
+  // Set initial theme
+  updateParticlesTheme();
+
+  // Watch for theme changes
+  const themeObserver = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.attributeName === "data-theme") {
+        updateParticlesTheme();
+      }
+    });
+  });
+  themeObserver.observe(document.documentElement, { attributes: true });
+
   /* ── Cleanup ── */
   window._hero3dCleanup = () => {
+    themeObserver.disconnect();
     cancelAnimationFrame(animationId);
     window.removeEventListener("resize", onResize);
     renderer.dispose();
