@@ -129,6 +129,42 @@
     accents.push(mesh);
   });
 
+  /* ── Mouse Tracking for Interactivity ── */
+  const mouse = { x: 0, y: 0 };
+  const targetMouse = { x: 0, y: 0 };
+  
+  window.addEventListener("mousemove", (event) => {
+    targetMouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+    targetMouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+  });
+
+  /* ── Interactive Particle Grid (Background Dots) ── */
+  const particleCount = 1800; // Large but efficient grid
+  const particlesGeo = new THREE.BufferGeometry();
+  const positions = new Float32Array(particleCount * 3);
+  const spread = 25; // How far the dots spread
+
+  for (let i = 0; i < particleCount; i++) {
+    const i3 = i * 3;
+    positions[i3] = (Math.random() - 0.5) * spread; // X
+    positions[i3 + 1] = (Math.random() - 0.5) * spread; // Y
+    positions[i3 + 2] = (Math.random() - 0.5) * spread - 5; // Z (behind objects)
+  }
+
+  particlesGeo.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+
+  const particlesMat = new THREE.PointsMaterial({
+    color: 0xffffff,
+    size: 0.035,
+    transparent: true,
+    opacity: 0.25,
+    sizeAttenuation: true,
+    blending: THREE.AdditiveBlending,
+  });
+
+  const particleSystem = new THREE.Points(particlesGeo, particlesMat);
+  scene.add(particleSystem);
+
   /* ── Animation Loop ── */
   const clock = new THREE.Clock();
   let animationId;
@@ -136,6 +172,20 @@
   const animate = () => {
     animationId = requestAnimationFrame(animate);
     const elapsed = clock.getElapsedTime();
+
+    // Smooth lerp for mouse movement
+    mouse.x += (targetMouse.x - mouse.x) * 0.05;
+    mouse.y += (targetMouse.y - mouse.y) * 0.05;
+
+    // Interactive swaying effect for background dots
+    particleSystem.position.x = mouse.x * 0.45;
+    particleSystem.position.y = mouse.y * 0.35;
+    particleSystem.rotation.y = mouse.x * 0.05;
+
+    // Adjust particle opacity based on theme
+    const currentTheme = document.documentElement.dataset.theme;
+    particlesMat.opacity = currentTheme === "light" ? 0.12 : 0.25;
+    particlesMat.color.set(currentTheme === "light" ? 0x2563eb : 0xffffff);
 
     // Center: slow rotation + gentle float
     centerObj.rotation.y = elapsed * 0.15;

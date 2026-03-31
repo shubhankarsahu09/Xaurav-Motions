@@ -70,21 +70,14 @@ body::after {
 
 body::before {
   inset: -50%;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.25) 0.09375rem, transparent calc(0.09375rem + 1px));
-  background-size: 2.25rem 2.25rem;
   mask-image: radial-gradient(circle at center, black 25%, transparent 60%);
   transform: perspective(50rem) rotateX(55deg);
   transform-origin: center center;
-  animation: gridForward 12s linear infinite;
   z-index: -2;
-  will-change: background-position;
   contain: strict;
 }
 
-@keyframes gridForward {
-  0% { background-position: 0 0; }
-  100% { background-position: 2.25rem 2.25rem; }
-}
+
 
 body::after {
   background: radial-gradient(circle at center, transparent 45%, rgba(2, 6, 15, 0.65) 100%);
@@ -2850,7 +2843,6 @@ html[data-theme="light"] body {
 }
 
 html[data-theme="light"] body::before {
-  background-image: radial-gradient(rgba(37, 99, 235, 0.55) 0.125rem, transparent calc(0.125rem + 1px));
   mask-image: radial-gradient(circle at center, black 35%, transparent 75%);
 }
 
