@@ -2639,17 +2639,18 @@ body.is-ready .progress-ring-container {
 
   .header-actions {
     position: absolute !important;
-    bottom: -1.75rem !important;
-    right: 1.25rem !important;
+    bottom: -2.75rem !important;
+    right: 0.5rem !important;
     left: auto !important;
     width: auto;
     z-index: 100 !important;
   }
-  
+
   .theme-toggle {
     margin: 0 !important;
     background: var(--panel-strong) !important;
     box-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.3), var(--shadow) !important;
+    transform: scale(0.9) !important; /* Slightly smaller on mobile to clear space too */
   }
 
   .theme-toggle {
@@ -2852,8 +2853,8 @@ body.is-ready .progress-ring-container {
   }
 
   .header-actions {
-    bottom: 0.5rem !important;
-    right: 1rem !important;
+    bottom: -2.5rem !important;
+    right: 0.25rem !important;
     left: auto !important;
   }
 
