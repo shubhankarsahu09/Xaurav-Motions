@@ -2614,9 +2614,9 @@ body.is-ready .progress-ring-container {
 
 @media (max-width: 820px) {
   .site-header {
-    position: static;
+    position: relative;
     width: calc(100% - 1.25rem);
-    padding: 0.875rem 1rem;
+    padding: 1.25rem 1rem;
     border-radius: 1.75rem;
     grid-template-columns: 1fr;
     justify-items: center;
@@ -2634,9 +2634,16 @@ body.is-ready .progress-ring-container {
   }
 
   .header-actions {
-    width: 100%;
-    justify-content: center;
-    justify-self: center;
+    width: auto;
+    position: absolute;
+    bottom: -1.25rem;
+    right: 1.5rem;
+    z-index: 10;
+  }
+
+  .theme-toggle {
+    background: var(--panel-strong) !important;
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.2), var(--shadow) !important;
   }
 
   main,
