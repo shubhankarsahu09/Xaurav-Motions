@@ -2855,9 +2855,8 @@ body.is-ready .progress-ring-container {
   }
 
   .timeline {
-    left: 1rem;
-    right: 1rem;
-    bottom: 1rem;
+    width: 100%;
+    margin-top: auto;
     gap: 0.5rem;
   }
 
