@@ -2124,15 +2124,162 @@ html[data-theme="light"] .theme-toggle-icon-moon {
 
 .reveal {
   opacity: 0;
-  transform: translateY(1.75rem);
+  transform: translateY(2.5rem);
   transition:
-    opacity 900ms cubic-bezier(0.16, 1, 0.3, 1),
-    transform 900ms cubic-bezier(0.16, 1, 0.3, 1);
+    opacity 1000ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1000ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* ── Hero Stagger Sequence ── */
+.hero-copy > .reveal:nth-child(1) { transition-delay: 100ms; }
+.hero-copy > .reveal:nth-child(2) { transition-delay: 250ms; }
+.hero-copy > .reveal:nth-child(3) { transition-delay: 420ms; }
+.hero-copy > .reveal:nth-child(4) { transition-delay: 580ms; }
+.hero-copy > .reveal:nth-child(5) { transition-delay: 700ms; }
+.hero-copy > .reveal:nth-child(6) { transition-delay: 840ms; }
+
+/* ── Floating Card Keyframes ── */
+@keyframes floatY {
+  0%, 100% { transform: translate3d(0, 0, 38px); }
+  50% { transform: translate3d(0, -0.75rem, 38px); }
+}
+
+@keyframes floatYSide {
+  0%, 100% { transform: translate3d(0, 0, 18px); }
+  50% { transform: translate3d(0, -1rem, 18px); }
+}
+
+@keyframes floatYStat {
+  0%, 100% { transform: translate3d(0, 0, 28px); }
+  50% { transform: translate3d(0, -0.6rem, 28px); }
+}
+
+.card-main {
+  animation: floatY 5s ease-in-out infinite;
+}
+
+.card-side {
+  animation: floatYSide 6s ease-in-out infinite;
+  animation-delay: 0.6s;
+}
+
+.card-stat {
+  animation: floatYStat 7s ease-in-out infinite;
+  animation-delay: 1.2s;
+}
+
+/* ── Subtle shimmer across project cards on hover ── */
+@keyframes shimmerSlide {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.project-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  border-radius: inherit;
+  background: linear-gradient(
+    105deg,
+    transparent 38%,
+    rgba(255, 255, 255, 0.06) 44%,
+    rgba(255, 255, 255, 0.14) 50%,
+    rgba(255, 255, 255, 0.06) 56%,
+    transparent 62%
+  );
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: opacity 400ms ease;
+}
+
+.project-card:hover::before {
+  opacity: 1;
+  animation: shimmerSlide 1.2s ease-out forwards;
+}
+
+/* ── Stagger for list grids ── */
+.service-grid > .reveal:nth-child(1),
+.process-track > .reveal:nth-child(1) { transition-delay: 80ms; }
+.service-grid > .reveal:nth-child(2),
+.process-track > .reveal:nth-child(2) { transition-delay: 200ms; }
+.service-grid > .reveal:nth-child(3),
+.process-track > .reveal:nth-child(3) { transition-delay: 320ms; }
+
+.project-grid > .reveal:nth-child(1) { transition-delay: 100ms; }
+.project-grid > .reveal:nth-child(2) { transition-delay: 260ms; }
+.project-grid > .reveal:nth-child(3) { transition-delay: 420ms; }
+
+/* ── Glow pulse on primary buttons ── */
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 1rem 2.25rem rgba(124, 247, 212, 0.22); }
+  50% { box-shadow: 0 1rem 3.5rem rgba(124, 247, 212, 0.38), 0 0 1.5rem rgba(124, 247, 212, 0.18); }
+}
+
+.button-primary {
+  animation: glowPulse 3s ease-in-out infinite;
+}
+
+.button-primary:hover {
+  animation: none;
+}
+
+/* ── Magnetic button hover lift ── */
+.button.is-magnetic {
+  transition:
+    transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 380ms cubic-bezier(0.22, 1, 0.36, 1),
+    background 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    color 280ms ease,
+    box-shadow 460ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ── Client strip scroll animation ── */
+@keyframes scrollStrip {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.client-strip {
+  overflow: hidden;
+  position: relative;
+}
+
+.client-strip-inner {
+  display: flex;
+  gap: 2rem;
+  animation: scrollStrip 18s linear infinite;
+  width: max-content;
+}
+
+/* ── Eyebrow accent glow ── */
+.eyebrow {
+  position: relative;
+}
+
+.hero-copy .eyebrow::before {
+  content: "";
+  position: absolute;
+  left: -0.5rem;
+  top: 50%;
+  width: 0.375rem;
+  height: 0.375rem;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0.75rem var(--accent);
+  transform: translateY(-50%);
+  animation: glowDot 2s ease-in-out infinite;
+}
+
+@keyframes glowDot {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0.75rem var(--accent); }
+  50% { opacity: 0.5; box-shadow: 0 0 1.5rem var(--accent), 0 0 0.5rem var(--accent); }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -2163,6 +2310,20 @@ html[data-theme="light"] .theme-toggle-icon-moon {
   .site-header,
   .mobile-cta {
     transition: none;
+  }
+
+  .card-main,
+  .card-side,
+  .card-stat,
+  .button-primary,
+  .hero-copy .eyebrow::before,
+  .client-strip-inner {
+    animation: none;
+  }
+
+  .project-card:hover::before {
+    animation: none;
+    opacity: 0;
   }
 }
 

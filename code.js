@@ -108,8 +108,7 @@ if ("IntersectionObserver" in window) {
     }
   );
 
-  revealItems.forEach((item, index) => {
-    item.style.transitionDelay = `${Math.min(index * 60, 360)}ms`;
+  revealItems.forEach((item) => {
     revealObserver.observe(item);
   });
 } else {
@@ -578,4 +577,85 @@ if (mobileCta && contactSection && "IntersectionObserver" in window) {
   );
 
   ctaObserver.observe(contactSection);
+}
+
+/* ── Magnetic Button Effect ── */
+if (!isReducedMotion() && prefersHoverInput.matches) {
+  const magneticElements = document.querySelectorAll(
+    ".hero-actions .button, .contact-actions .button, .header-cta, .site-nav a"
+  );
+
+  magneticElements.forEach((element) => {
+    element.classList.add("is-magnetic");
+    let magneticFrame = 0;
+
+    element.addEventListener(
+      "mousemove",
+      (event) => {
+        if (magneticFrame) cancelAnimationFrame(magneticFrame);
+        magneticFrame = requestAnimationFrame(() => {
+          const rect = element.getBoundingClientRect();
+          const centerX = rect.left + rect.width / 2;
+          const centerY = rect.top + rect.height / 2;
+          const deltaX = (event.clientX - centerX) * 0.25;
+          const deltaY = (event.clientY - centerY) * 0.3;
+          element.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
+          magneticFrame = 0;
+        });
+      },
+      { passive: true }
+    );
+
+    element.addEventListener(
+      "mouseleave",
+      () => {
+        if (magneticFrame) cancelAnimationFrame(magneticFrame);
+        element.style.transform = "";
+      },
+      { passive: true }
+    );
+  });
+}
+
+/* ── Counter Animation for Hero Metrics ── */
+const animateCounters = () => {
+  const counterElements = document.querySelectorAll(".hero-metrics strong");
+  counterElements.forEach((el) => {
+    const text = el.textContent.trim();
+    const match = text.match(/^(\d+)(\D*)$/);
+    if (!match) return;
+
+    const target = parseInt(match[1], 10);
+    const suffix = match[2];
+    const duration = 1800;
+    const startTime = performance.now();
+    el.textContent = "0" + suffix;
+
+    const step = (now) => {
+      const progress = Math.min((now - startTime) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = Math.round(target * eased);
+      el.textContent = current + suffix;
+      if (progress < 1) requestAnimationFrame(step);
+    };
+
+    requestAnimationFrame(step);
+  });
+};
+
+const heroMetrics = document.querySelector(".hero-metrics");
+if (heroMetrics && "IntersectionObserver" in window) {
+  const counterObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          animateCounters();
+          counterObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.5 }
+  );
+
+  counterObserver.observe(heroMetrics);
 }
