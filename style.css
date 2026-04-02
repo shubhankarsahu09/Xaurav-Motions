@@ -759,6 +759,7 @@ html[data-theme="light"] .theme-toggle-icon-moon {
 
 .hero-stage {
   position: relative;
+  z-index: 2;
   min-height: 45rem;
   perspective: 100rem;
   transform-style: preserve-3d;
