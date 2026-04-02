@@ -566,6 +566,7 @@ html[data-theme="light"] .theme-toggle-icon-moon {
   gap: 3.375rem;
   align-items: center;
   min-height: calc(100vh - 9.375rem);
+  position: relative;
 }
 
 .hero-copy {
@@ -2325,17 +2326,14 @@ html[data-theme="light"] .theme-toggle-icon-moon {
 
 /* ── 3D Hero Canvas ── */
 .hero-center-visual {
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  position: fixed;
+  inset: 0;
   pointer-events: none;
   z-index: -1;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: visible;
 }
 
 .hero-canvas-container {
