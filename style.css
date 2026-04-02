@@ -5,8 +5,8 @@
   --panel-strong: rgba(13, 24, 48, 0.94);
   --line: rgba(255, 255, 255, 0.08);
   --line-strong: rgba(255, 255, 255, 0.16);
-  --text: #eff4ff;
-  --muted: #9aa8c9;
+  --text: #f8fafc; /* Brightened for better dark theme legibility */
+  --muted: #cbd5e1; /* Boosted visibility for secondary text */
   --accent: #7cf7d4;
   --accent-2: #ff9a6c;
   --accent-3: #8cb6ff;
