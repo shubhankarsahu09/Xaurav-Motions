@@ -566,6 +566,7 @@ html[data-theme="light"] .theme-toggle-icon-moon {
   gap: 3.375rem;
   align-items: center;
   min-height: calc(100vh - 9.375rem);
+  position: relative;
 }
 
 .hero-copy {
@@ -2505,7 +2506,7 @@ body.is-ready .progress-ring-container {
     inset: 0;
     transform: scale(0.8);
     position: relative;
-    order: -1; /* Move visual above text on mobile */
+    order: 2; /* In flex-column, place it between text (order 1) and stage (order 3) if needed, or after text. */
     margin-bottom: -4rem;
   }
   .progress-ring-container {
