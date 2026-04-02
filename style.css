@@ -1030,6 +1030,7 @@ html[data-theme="light"] .theme-toggle-icon-moon {
 .client-strip span {
   position: relative;
   isolation: isolate;
+  overflow: hidden;
   transition:
     transform 340ms cubic-bezier(0.22, 1, 0.36, 1),
     border-color 340ms cubic-bezier(0.22, 1, 0.36, 1),
@@ -2324,7 +2325,7 @@ html[data-theme="light"] .theme-toggle-icon-moon {
 
 /* ── 3D Hero Canvas ── */
 .hero-center-visual {
-  position: fixed;
+  position: absolute;
   width: 100vw;
   height: 100vh;
   left: 50%;
