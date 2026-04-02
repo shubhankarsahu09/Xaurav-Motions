@@ -2327,12 +2327,14 @@ html[data-theme="light"] .theme-toggle-icon-moon {
 /* ── 3D Hero Canvas ── */
 .hero-center-visual {
   position: absolute;
-  inset: -4% -8%; /* Reduced from -10% -20% to make the visual smaller and more focused */
+  inset: 0;
   pointer-events: none;
   z-index: -2;
   display: flex;
   align-items: center;
   justify-content: center;
+  transform: scale(0.75); /* Reduced desktop size for elegance */
+  transform-origin: center;
 }
 
 .hero-canvas-container {
@@ -2351,24 +2353,25 @@ body.is-ready .hero-canvas-container {
   position: relative;
   width: 240px;
   height: 240px;
+  z-index: 10;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: -1;
-  opacity: 0;
-  transform: scale(0.9);
-  transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-body.is-ready .progress-ring-container {
-  opacity: 1;
-  transform: scale(1);
+.progress-ring {
+  transform: rotate(-90deg);
+}
+
+.progress-ring__circle-bg {
+  stroke-dasharray: 691.15;
+  stroke-dashoffset: 0;
 }
 
 .progress-ring__circle {
-  transition: stroke-dashoffset 0.35s;
-  transform: rotate(-90deg);
-  transform-origin: 50% 50%;
+  stroke-dasharray: 691.15;
+  stroke-dashoffset: 691.15;
+  transition: stroke-dashoffset 0.1s linear;
 }
 
 .progress-text {
@@ -2377,23 +2380,36 @@ body.is-ready .progress-ring-container {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  width: 160px;
+  gap: 0.25rem;
 }
 
 .progress-number {
-  font-size: 3rem;
+  font-family: "Syne", sans-serif;
+  font-size: 3.5rem;
   font-weight: 800;
-  color: white;
   line-height: 1;
 }
 
 .progress-subtext {
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.7);
-  margin-top: 0.5rem;
+  font-size: 0.72rem;
   text-transform: uppercase;
-  letter-spacing: 0.05rem;
+  letter-spacing: 0.15em;
+  opacity: 0.6;
+  max-width: 140px;
+}
+
+/* ── Header ── */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 1.5rem 0;
+  background: transparent;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0;
+  transform: translateY(-20px);
 }
 
 /* ── Contact Modal Slide-In ── */
@@ -2505,7 +2521,7 @@ body.is-ready .progress-ring-container {
   .hero-center-visual {
     position: absolute;
     inset: 0;
-    transform: scale(0.64) translateY(-25%); /* Slightly reduced scale and adjusted position for a smaller mobile profile */
+    transform: scale(0.48) translateY(-28%); /* Further reduced mobile scale for elegant, pretty backdrop */
     pointer-events: none;
     z-index: -1;
   }
