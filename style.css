@@ -2319,24 +2319,13 @@ html[data-theme="light"] .theme-toggle-icon-moon {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  z-index: -2;
+  z-index: 100;
   display: flex;
   align-items: center;
   justify-content: center;
-  transform: scale(0.75); /* Reduced desktop size for elegance */
-  transform-origin: center;
 }
 
-.hero-canvas-container {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  transition: opacity 2s ease;
-}
 
-body.is-ready .hero-canvas-container {
-  opacity: 1;
-}
 
 /* ── Progress Ring ── */
 .progress-ring-container {
@@ -2500,9 +2489,11 @@ body.is-ready .hero-canvas-container {
   .hero-center-visual {
     position: absolute;
     inset: 0;
-    transform: scale(0.48) translateY(-28%); /* Further reduced mobile scale for elegant, pretty backdrop */
     pointer-events: none;
-    z-index: -1;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .hero-copy {
     padding-top: 1.5rem;
