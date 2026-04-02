@@ -567,7 +567,6 @@ html[data-theme="light"] .theme-toggle-icon-moon {
   align-items: center;
   min-height: calc(100vh - 9.375rem);
   position: relative;
-  overflow: hidden; /* Added to contain wide background animation */
 }
 
 .hero-copy {
