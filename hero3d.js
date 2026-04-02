@@ -224,14 +224,21 @@
     const currentTheme = document.documentElement.dataset.theme;
     const isLight = currentTheme === "light";
     
-    // Particles: Increase opacity and vibrancy for light mode
-    particlesMat.opacity = isLight ? 0.42 : 0.25;
-    particlesMat.color.set(isLight ? 0x0ea5e9 : 0xffffff);
+    // Particles: Boost opacity, size, and vibrancy significantly for light mode "brilliance"
+    particlesMat.opacity = isLight ? 0.72 : 0.25;
+    particlesMat.color.set(isLight ? 0x0284c7 : 0xffffff);
+    particlesMat.size = isLight ? 0.052 : 0.035;
     
-    // Lighting: Boost intensity in light mode to keep shapes 'crisp'
-    ambientLight.intensity = isLight ? 0.8 : 0.4;
-    dirLight1.intensity = isLight ? 2.2 : 1.8;
-    renderer.toneMappingExposure = isLight ? 1.0 : 1.2;
+    // Lighting: Significantly boost intensity in light mode to maintain contrast on white
+    ambientLight.intensity = isLight ? 1.6 : 0.4;
+    dirLight1.intensity = isLight ? 4.2 : 1.8;
+    renderer.toneMappingExposure = isLight ? 1.55 : 1.2;
+    
+    // Adjust glass material for light mode: increase visibility and envMap pop
+    if (typeof centerMat !== 'undefined') {
+      centerMat.envMapIntensity = isLight ? 3.8 : 2.5;
+      centerMat.color.set(isLight ? 0xdbeafe : 0xffffff); // Subtle blue tint in light mode
+    }
   };
   
   // Set initial theme

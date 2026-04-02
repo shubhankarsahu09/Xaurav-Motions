@@ -97,7 +97,7 @@ body.is-ready .site-footer,
 body.is-ready .mobile-cta {
   opacity: 1;
   transform: translateY(0);
-  transition: opacity 700ms ease, transform 700ms ease;
+  transition: opacity 480ms ease, transform 480ms ease;
 }
 
 img,
@@ -2983,14 +2983,13 @@ html[data-theme="light"] .noise::after {
 }
 
 html[data-theme="light"] .orb-one {
-  display: block;
-  background: radial-gradient(circle, rgba(124, 247, 212, 0.28), transparent 65%);
-  opacity: 0.5;
+  background: radial-gradient(circle, rgba(124, 247, 212, 0.38), transparent 68%);
+  opacity: 0.65;
 }
 
 html[data-theme="light"] .orb-two {
-  background: radial-gradient(circle, rgba(59, 130, 246, 0.22), rgba(11, 159, 170, 0.12) 35%, transparent 65%);
-  opacity: 0.5;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.32), rgba(11, 159, 170, 0.18) 35%, transparent 68%);
+  opacity: 0.65;
 }
 
 html[data-theme="light"] .site-header {

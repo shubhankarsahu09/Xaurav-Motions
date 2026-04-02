@@ -115,23 +115,23 @@ const runIntroSequence = () => {
     tl.to(contextEl, {
       opacity: 0,
       y: -10,
-      duration: 0.2
-    }, i === 0 ? 0.3 : ">")
+      duration: 0.1
+    }, i === 0 ? 0.15 : ">")
     .set(contextEl, { textContent: data.context, y: 10 })
-    .to(contextEl, { opacity: 1, y: 0, duration: 0.4, ease: "back.out(1.7)" })
+    .to(contextEl, { opacity: 1, y: 0, duration: 0.25, ease: "back.out(1.7)" })
     
     .to(charEl, {
       opacity: 0,
       scale: 0.8,
-      duration: 0.2
+      duration: 0.1
     }, "<")
     .set(charEl, { textContent: data.char, scale: 1.2 })
-    .to(charEl, { opacity: 1, scale: 1, duration: 0.6, ease: "expo.out" })
+    .to(charEl, { opacity: 1, scale: 1, duration: 0.35, ease: "expo.out" })
     
     .to([charEl, contextEl], {
       opacity: 0,
-      duration: 0.3,
-      delay: 0.5
+      duration: 0.2,
+      delay: 0.25
     });
   });
 };
@@ -147,7 +147,7 @@ const animateProgressRing = () => {
   circle.style.strokeDashoffset = circumference;
 
   const targetPercent = 85;
-  const duration = 2.5;
+  const duration = 1.2;
 
   gsap.to(circle, {
     strokeDashoffset: circumference - (targetPercent / 100) * circumference,
@@ -184,7 +184,7 @@ if (document.readyState === "complete" || document.readyState === "interactive")
   window.addEventListener(
     "DOMContentLoaded",
     () => {
-      window.setTimeout(markPageReady, 120);
+      window.setTimeout(markPageReady, 30);
     },
     { once: true }
   );
