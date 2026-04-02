@@ -2327,7 +2327,7 @@ html[data-theme="light"] .theme-toggle-icon-moon {
 /* ── 3D Hero Canvas ── */
 .hero-center-visual {
   position: absolute;
-  inset: -10% -20%;
+  inset: -4% -8%; /* Reduced from -10% -20% to make the visual smaller and more focused */
   pointer-events: none;
   z-index: -2;
   display: flex;
@@ -2505,7 +2505,7 @@ body.is-ready .progress-ring-container {
   .hero-center-visual {
     position: absolute;
     inset: 0;
-    transform: scale(0.7) translateY(-22%); /* Increased negative translation to provide more space below */
+    transform: scale(0.64) translateY(-25%); /* Slightly reduced scale and adjusted position for a smaller mobile profile */
     pointer-events: none;
     z-index: -1;
   }
