@@ -105,7 +105,7 @@ const runIntroSequence = () => {
           introOverlay.style.display = "none";
           body.classList.remove("is-loading");
           body.classList.add("is-ready");
-          animateProgressRing();
+          // animateProgressRing() call removed
         }
       });
     }
@@ -136,35 +136,7 @@ const runIntroSequence = () => {
   });
 };
 
-const animateProgressRing = () => {
-  const circle = document.querySelector(".progress-ring__circle");
-  const numberEl = document.querySelector(".progress-number");
-  if (!circle || !numberEl) return;
 
-  const radius = circle.r.baseVal.value;
-  const circumference = radius * 2 * Math.PI;
-  circle.style.strokeDasharray = `${circumference} ${circumference}`;
-  circle.style.strokeDashoffset = circumference;
-
-  const targetPercent = 85;
-  const duration = 1.2;
-
-  gsap.to(circle, {
-    strokeDashoffset: circumference - (targetPercent / 100) * circumference,
-    duration: duration,
-    ease: "power2.inOut"
-  });
-
-  const countObj = { value: 0 };
-  gsap.to(countObj, {
-    value: targetPercent,
-    duration: duration,
-    ease: "power2.inOut",
-    onUpdate: () => {
-      numberEl.textContent = Math.floor(countObj.value) + "%";
-    }
-  });
-};
 
 const markPageReady = () => {
   if (pageLoader) {
