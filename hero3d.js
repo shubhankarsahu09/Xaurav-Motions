@@ -224,20 +224,20 @@
     const currentTheme = document.documentElement.dataset.theme;
     const isLight = currentTheme === "light";
     
-    // Particles: Reduced opacity and changed color for more subtle dark theme "presence"
-    particlesMat.opacity = isLight ? 0.72 : 0.16;
-    particlesMat.color.set(isLight ? 0x0284c7 : 0x32cfae);
-    particlesMat.size = isLight ? 0.052 : 0.032;
+    // Particles: Lower opacity and deeper color to prevent "wash out" of the main heading
+    particlesMat.opacity = isLight ? 0.72 : 0.12;
+    particlesMat.color.set(isLight ? 0x0284c7 : 0x2563eb); // Deeper blue in dark mode
+    particlesMat.size = isLight ? 0.052 : 0.03;
     
-    // Lighting: Reduced dark mode intensity to avoid "harsh" highlights on the black backdrop
-    ambientLight.intensity = isLight ? 1.6 : 0.28;
-    dirLight1.intensity = isLight ? 4.2 : 1.4;
-    renderer.toneMappingExposure = isLight ? 1.55 : 1.15;
+    // Lighting: Significantly reduced intensities to remove the "white effect" that washes out the UI
+    ambientLight.intensity = isLight ? 1.6 : 0.18;
+    dirLight1.intensity = isLight ? 4.2 : 1.0;
+    renderer.toneMappingExposure = isLight ? 1.55 : 0.95; 
     
-    // Adjust glass material for depth and subtlety in dark mode
+    // Adjust glass material: darker and less reflective in dark mode
     if (typeof centerMat !== 'undefined') {
-      centerMat.envMapIntensity = isLight ? 3.8 : 1.8;
-      centerMat.color.set(isLight ? 0xdbeafe : 0xd1d5db); // Less "brilliant white" in dark mode
+      centerMat.envMapIntensity = isLight ? 3.8 : 1.2;
+      centerMat.color.set(isLight ? 0xdbeafe : 0x94a3b8); // Muted slate in dark mode
     }
   };
   
