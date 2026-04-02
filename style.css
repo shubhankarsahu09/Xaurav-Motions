@@ -2326,7 +2326,11 @@ html[data-theme="light"] .theme-toggle-icon-moon {
 /* ── 3D Hero Canvas ── */
 .hero-center-visual {
   position: absolute;
-  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   pointer-events: none;
   z-index: -1;
   display: flex;
